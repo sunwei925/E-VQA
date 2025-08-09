@@ -1,0 +1,20 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -u train_KVQ_final_ema.py \
+	--num_epochs 30 --batch_size 24 \
+	--n_fragment 12 \
+	--resize 384 \
+	--crop_size 384 \
+	--salient_patch_dimension 480 \
+	--lr 0.00001 \
+	--lr_weight_L2 0.1 \
+	--lr_weight_pair 1 \
+	--decay_ratio 0.9 \
+	--decay_interval 10 \
+	--random_seed 2025 \
+	--snapshot ckpts_trainval \
+	--pretrained_path ./ckpts_5W2/UVQA_DVQ__NR_2_384_epoch_5.pth \
+	--database_dir /data/sunwei_data/NTIRE25_5W2_Videos/N_image_original \
+	--model UVQA \
+	--multi_gpu True \
+	--print_samples 20 \
+	--database NTIREVideo \
+	--spatial_sample_rate 2 >>logfiles/train_KVQtrainval_384_SSR2_12_5w2e5F_plcc_ema_b24.log

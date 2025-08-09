@@ -1,0 +1,20 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -u train_DVQ_pair.py \
+	--num_epochs 5 --batch_size 16 \
+	--n_fragment 12 \
+	--resize 384 \
+	--crop_size 384 \
+	--salient_patch_dimension 480 \
+	--lr 0.00001 \
+	--lr_weight_L2 0.005 \
+	--lr_weight_pair 1 \
+	--decay_ratio 0.9 \
+	--decay_interval 10 \
+	--random_seed 1000 \
+	--snapshot ckpts_5W2 \
+	--pretrained_path ./MinimalisticVQA_Model_SwinT_SlowFast.pth \
+	--database_dir /mnt/sda/fk/data/VQA/DVQ/image_original/ \
+	--model UVQA \
+	--multi_gpu True \
+	--print_samples 80 \
+	--database DVQ \
+	--spatial_sample_rate 2 >>logfiles/train_DVQ_384_SSR2_12_5W2_e10.log
